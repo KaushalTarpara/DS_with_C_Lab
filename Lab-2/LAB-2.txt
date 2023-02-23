@@ -1,0 +1,18 @@
+1) Write a C program to count vowels and consonants in a string using a pointer
+
+2) Write a C program to compare two strings using pointers.
+ 3) Write a C program to copy a string to another without using strcpy function. Use pointers for both the strings.
+
+4) Write a C Program to check whether the string entered by the user is a palindrome string or not using a pointer.
+
+5) Write a C program to accept a string and a character from the user. Now using a pointer delete all the occurrences of the character from the string and return the corrected string. Make it using a user defined function.
+
+6) Write a C program to copy one array to another using pointers. The size of both the arrays
+
+may be different.
+
+7) Write a C program to create a function to accept a number and check whether it is even or odd. Call the function using function pointer
+
+8) Create an array of 10 float numbers. Pass them to a function named average. Accept a number m from the user in the function. Calculate the average of the first m numbers of the array and return to the caller.
+
+9) Create a two dimensional array to store sales data of Quarter (Q1, Q2, Q3 and Q4) and for four companies (C1, C2, C3, C4). Accept the quarter and company from the user and display the sales figure. Use a pointer to the 2D array and suitable pointer arithmetic.
