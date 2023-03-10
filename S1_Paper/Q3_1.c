@@ -56,7 +56,7 @@ int main() {
 
     printf("\nSorted stack of books based on price:\n");
     for (int i = 0; i <= s.top; i++) {
-        printf("%s $%.2f %d pages\n", s.arr[i].name, s.arr[i].price, s.arr[i].pages);
+        printf("%s %.2fRP %d pages\n", s.arr[i].name, s.arr[i].price, s.arr[i].pages);
     }
 
     return 0;
