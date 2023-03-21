@@ -18,7 +18,7 @@ void EnqueueEnd(int data){
 }
 void EnqueueFirst(int data){
     if (rear == MAX - 1) {
-        printf("Queue is full. Cannot insert more elements.\n");
+        printf("Queue is full\n");
     } else {
      
         for (int i = rear; i >= front; i--) {
@@ -88,8 +88,6 @@ int main() {
     EnqueueEnd(10);
     display();
     EnqueueEnd(20);
-    display();
-    EnqueueEnd(30);
     display();
   
     EnqueueFirst(40);
