@@ -37,11 +37,17 @@ void display() {
         return;
     }
     printf("Queue elements are:\n");
-    int i = front;
-    while (i != rear) {
+    // int i = front;
+    // while (i != rear) {
+    //     printf("%d ", queue[i]);
+    //     i = (i + 1) % MAX;
+    // }
+     
+    for(int i = front; i != rear; i=(i+1)%MAX) {
         printf("%d ", queue[i]);
-        i = (i + 1) % MAX;
+        
     }
+   
     printf("%d ", queue[rear]);
     printf("\n");
 }
@@ -51,11 +57,13 @@ int main() {
     enqueue(20);
     enqueue(30);
     enqueue(40);
+    
     display();
     printf("Dequeuing element: %d\n", dequeue());
     printf("Dequeuing element: %d\n", dequeue());
     display();
     enqueue(80);
+     enqueue(90);
     display();
    return 0;
 }

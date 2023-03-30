@@ -69,12 +69,9 @@ void deleteLast(){
     if(tail==NULL){
         printf("\nLinked List is Empty...");
     }else{
-        printf("Before %d",tail->data);
         
         tail=tail->pre;
         tail->next=NULL;
-        //tail->pre->next=NULL;
-        printf("After %d",tail->data);
     }
 }
 void deleteFirst(){
@@ -89,32 +86,6 @@ void deleteFirst(){
     }
 
  }
-// void deleteLoc(int loc){
-    
-//     node *temp=head;
-//     if(loc==1){
-//         printf("loc1");
-//         deleteFirst();
-//     }else{
-//         while(--loc){
-//             temp=temp->next;
-//         }
-        
-//         if(temp->next==NULL){
-            
-//             printf(" loclast ");
-//             deleteLast();
-//         }else{
-//             printf("demo");
-//             temp->pre->next=temp->next;
-//             temp->next->pre=temp->pre;
-//         }
-//     }
-
-
-
-// }
-
 void deletePosition(int pos)
 {
 	int i=1;
@@ -173,6 +144,8 @@ int main(){
     insertAtLast(30);
     display();
 
+    
+    
     insertAtFirst(-10);
     display();
     insertAtFirst(-20);
@@ -191,13 +164,6 @@ int main(){
     display();
     deleteFirst();
     display();
-
-    // deleteLoc(2);
-    // display();
-    
-    // deleteLoc(1);
-    // display();
-    
 
     deletePosition(2);
     display();

@@ -10,25 +10,19 @@ typedef struct Node{
 
 node *head=NULL,*tail=NULL;
 
-
 void insertLast(int info){
 
     node *newnode=(node*)malloc(sizeof(node));
     newnode->data=info;
     newnode->next=NULL;
-
   
     if(tail==NULL){
         head=tail=newnode;
-        // newnode->next=head;
+        newnode->next=head;
     }else{
-        //temp->next=tail;
-       
         tail->next=newnode;
         tail=newnode;
         tail->next=head;
-       
-
     }
 
 
@@ -43,10 +37,6 @@ void insertFirst(int info){
         head=tail=newnode;
         // newnode->next=head;
     }else{
-        //temp->next=tail;
-        
-        //tail->next=newnode;
-        //tail=newnode;
         newnode->next=head;
         head=newnode;
         tail->next=newnode;
@@ -78,7 +68,6 @@ void deleteFirst(){
         printf("Queue is Empty\n");
     
     }else{
-       // node *temp=tail;
         printf(" \n Dequqe element :%d\n ",head->data );
     
         tail->next=head->next;

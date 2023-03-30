@@ -44,13 +44,14 @@ void display(int *queue){
 int Revqueue(int *queue,int max){
     if(front==-1)
     {        printf("\nUnderflow");
-    }else{
+             return -1;
+    } 
         //int data=queue[front];
 
         int data=Dequeue(queue);
         Revqueue(queue,max);
         Enqueue(queue,max,data);
        // return queue[++rear]=data;
-    }       
+        
 
 }
