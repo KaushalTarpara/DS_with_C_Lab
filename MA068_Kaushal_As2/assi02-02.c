@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "LinkedList.h"
 
-// Function to remove duplicates from an unsorted list
+// remove duplicates from an unsorted list
 void removeDuplicates(Node* head) {
     if (head == NULL) {
         return;

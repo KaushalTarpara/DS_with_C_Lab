@@ -1,105 +1,79 @@
-// C code to implement Kruskal's algorithm
-
 #include <stdio.h>
 #include <stdlib.h>
 
-// Comparator function to use in sorting
-int comparator(const void* p1, const void* p2)
-{
-	const int(*x)[3] = p1;
-	const int(*y)[3] = p2;
+#define MAX_EDGES 100
 
-	return (*x)[2] - (*y)[2];
+typedef struct {
+    int u, v, weight;
+} Edge;
+
+int parent[MAX_EDGES];
+
+int find(int u) {
+    while (u != parent[u]) {
+        u = parent[u];
+    }
+    return u;
 }
 
-// Initialization of parent[] and rank[] arrays
-void makeSet(int parent[], int rank[], int n)
-{
-	for (int i = 0; i < n; i++) {
-		parent[i] = i;
-		rank[i] = 0;
-	}
+void union_(int u, int v) {
+    parent[find(u)] = find(v);
 }
 
-// Function to find the parent of a node
-int findParent(int parent[], int component)
-{
-	if (parent[component] == component)
-		return component;
-
-	return parent[component]
-		= findParent(parent, parent[component]);
+int cmp(const void* a, const void* b) {
+    Edge* e1 = (Edge*) a;
+    Edge* e2 = (Edge*) b;
+    return e1->weight - e2->weight;
 }
 
-// Function to unite two sets
-void unionSet(int u, int v, int parent[], int rank[], int n)
-{
-	// Finding the parents
-	u = findParent(parent, u);
-	v = findParent(parent, v);
-
-	if (rank[u] < rank[v]) {
-		parent[u] = v;
-	}
-	else if (rank[u] > rank[v]) {
-		parent[v] = u;
-	}
-	else {
-		parent[v] = u;
-
-		// Since the rank increases if
-		// the ranks of two sets are same
-		rank[u]++;
-	}
+void kruskal(Edge* edges, int numEdges, int numVertices) {
+    int mstWeight = 0;
+    int numMstEdges = 0;
+    int i;
+   
+    for (i = 0; i < numVertices; i++) {
+        parent[i] = i;
+    }
+    
+	qsort(edges, numEdges, sizeof(Edge), cmp);
+    for (i = 0; i < numEdges && numMstEdges < numVertices - 1; i++) {
+        
+		int u = edges[i].u;
+        int v = edges[i].v;
+        int uroot = find(u);
+        int vroot = find(v);
+        
+		if (uroot != vroot) {
+            union_(u, v);
+            printf("%d - %d = %d\n", u, v, edges[i].weight);
+            mstWeight += edges[i].weight;
+            numMstEdges++;
+        }
+    }
+    
+	if (numMstEdges < numVertices - 1) {
+        printf("Graph is not connected\n");
+    } else {
+        printf("MST weight: %d\n", mstWeight);
+    }
 }
 
-// Function to find the MST
-void kruskalAlgo(int n, int edge[n][3])
-{
-	// First we sort the edge array in ascending order
-	// so that we can access minimum distances/cost
-	qsort(edge, n, sizeof(edge[0]), comparator);
-
-	int parent[n];
-	int rank[n];
-
-	// Function to initialize parent[] and rank[]
-	makeSet(parent, rank, n);
-
-	// To store the minimun cost
-	int minCost = 0;
-
-	printf(
-		"Following are the edges in the constructed MST\n");
-	for (int i = 0; i < n; i++) {
-		int v1 = findParent(parent, edge[i][0]);
-		int v2 = findParent(parent, edge[i][1]);
-		int wt = edge[i][2];
-
-		// If the parents are different that
-		// means they are in different sets so
-		// union them
-		if (v1 != v2) {
-			unionSet(v1, v2, parent, rank, n);
-			minCost += wt;
-			printf("%d -- %d == %d\n", edge[i][0],
-				edge[i][1], wt);
-		}
-	}
-
-	printf("Minimum Cost Spanning Tree: %d\n", minCost);
-}
-
-// Driver code
-int main()
-{
-	int edge[5][3] = { { 0, 1, 10 },
-					{ 0, 2, 6 },
-					{ 0, 3, 5 },
-					{ 1, 3, 15 },
-					{ 2, 3, 4 } };
-
-	kruskalAlgo(5, edge);
-
-	return 0;
+int main() {
+    int numVertices, numEdges;
+    Edge edges[MAX_EDGES];
+    int i;
+    
+	printf("Enter the number of vertices: ");
+    scanf("%d", &numVertices);
+    printf("Enter the number of edges: ");
+    scanf("%d", &numEdges);
+    
+	printf("Enter the edges (u, v, weight):\n");
+    for (i = 0; i < numEdges; i++) {
+        scanf("%d %d %d", &edges[i].u, &edges[i].v, &edges[i].weight);
+    }
+    
+	printf("Minimum spanning tree:\n");
+    kruskal(edges, numEdges, numVertices);
+    return 0;
 }
