@@ -106,10 +106,10 @@ node *adjList[MAX];
 
 
 void addEdge(int v, int e) {
-    node *newNode = (node *)malloc(sizeof(node));
-    
+    node *newNode = (node *)malloc(sizeof(node));    
     newNode->vertex = e;
-    newNode->next = adjList[v];
+
+    newNode->next = adjList[v];    
     adjList[v] = newNode;
 }
 
